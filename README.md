@@ -18,9 +18,9 @@ This repository provides a **Gym Environment** for Lightning Network channel and
 ## What's Included
 
 This package includes:
-- **Gym Environment** (\env/multi_channel.py\): The main JCoNaREnv environment
-- **Simulator** (\simulator/\): Lightning Network simulation and transaction generation
-- **Example Usage** (\example_usage.py\): Complete example showing how to use the environment
+- **Gym Environment** (`env/multi_channel.py`): The main JCoNaREnv environment
+- **Simulator** (`simulator/`): Lightning Network simulation and transaction generation
+- **Example Usage** (`example_usage.py`): Complete example showing how to use the environment
 - **Data**: Sample Lightning Network topology and merchant data
 
 ## What's NOT Included
@@ -42,17 +42,17 @@ This is a **model-agnostic environment**. It does NOT include:
 
 ### Install Dependencies
 
-\\\ash
+```bash
 git clone https://github.com/YOUR_USERNAME/lightning-network-gym.git
 cd lightning-network-gym
 pip install -r requirements.txt
-\\\
+```
 
 ## Quick Start
 
 ### Basic Usage
 
-\\\python
+```python
 import gym
 from env.multi_channel import JCoNaREnv
 from simulator import preprocessing
@@ -106,7 +106,7 @@ env = JCoNaREnv(
     amounts=env_params['amounts'],
     epsilons=env_params['epsilons'],
     capacity_upper_scale_bound=env_params['capacity_upper_scale_bound'],
-    model=\"your_model_name\",
+    model="your_model_name",
     LN_graph=preprocessing.make_LN_graph(
         preprocessing.get_directed_edges(env_params['data_path']),
         data['providers']
@@ -122,15 +122,15 @@ while not done:
     # Your model predicts action here
     action = your_model.predict(obs)
     obs, reward, done, info = env.step(action)
-\\\
+```
 
-See \example_usage.py\ for a complete working example.
+See `example_usage.py` for a complete working example.
 
 ## Environment Details
 
 ### Observation Space
 
-The environment provides a \gym.spaces.Dict\ observation space containing:
+The environment provides a `gym.spaces.Dict` observation space containing:
 - Network topology information
 - Node features and attributes
 - Current channel states
@@ -138,7 +138,7 @@ The environment provides a \gym.spaces.Dict\ observation space containing:
 
 ### Action Space
 
-The environment uses a \gym.spaces.MultiDiscrete\ action space for:
+The environment uses a `gym.spaces.MultiDiscrete` action space for:
 - Selecting nodes for channel opening
 - Allocating channel capacities
 
@@ -154,16 +154,16 @@ The reward function considers:
 
 ### With Stable-Baselines3
 
-\\\python
+```python
 from stable_baselines3 import PPO
 
 model = PPO("MultiInputPolicy", env, verbose=1)
 model.learn(total_timesteps=200000)
-\\\
+```
 
 ### With Custom PyTorch/TensorFlow Models
 
-\\\python
+```python
 # Implement your custom training loop
 for episode in range(num_episodes):
     obs = env.reset()
@@ -173,7 +173,7 @@ for episode in range(num_episodes):
         action = your_model.forward(obs)
         obs, reward, done, info = env.step(action)
         your_model.update(obs, action, reward)
-\\\
+```
 
 ### With Graph Neural Networks
 
@@ -183,12 +183,12 @@ The environment provides network graph structures compatible with PyTorch Geomet
 
 | Parameter | Description | Default |
 |-----------|-------------|---------|
-| \max_capacity\ | Maximum channel capacity | 1e7 |
-| \max_episode_length\ | Maximum steps per episode | 10 |
-| \counts\ | Transaction counts per type | [10, 10, 10] |
-| \mounts\ | Transaction amounts (satoshi) | [10000, 50000, 100000] |
-| \epsilons\ | Merchant ratios | [0.6, 0.6, 0.6] |
-| \capacity_upper_scale_bound\ | Capacity scaling upper bound | 25 |
+| `max_capacity` | Maximum channel capacity | 1e7 |
+| `max_episode_length` | Maximum steps per episode | 10 |
+| `counts` | Transaction counts per type | [10, 10, 10] |
+| `amounts` | Transaction amounts (satoshi) | [10000, 50000, 100000] |
+| `epsilons` | Merchant ratios | [0.6, 0.6, 0.6] |
+| `capacity_upper_scale_bound` | Capacity scaling upper bound | 25 |
 
 ## Data Format
 
@@ -196,13 +196,13 @@ The environment expects:
 - **data.json**: Lightning Network graph structure
 - **merchants.json**: Merchant node information
 
-Sample data is provided in the \data/\ directory.
+Sample data is provided in the `data/` directory.
 
 ## Citation
 
 If you use this environment in your research, please cite:
 
-\\\ibtex
+```bibtex
 @misc{lightning-network-gym,
   title={Aligning Incentives and Resilience: Joint Node Selection and Resource Allocation in the Lightning Network - Gym Environment},
   author={[Original Authors]},
@@ -210,7 +210,7 @@ If you use this environment in your research, please cite:
   publisher={GitHub},
   howpublished={\url{https://github.com/YOUR_USERNAME/lightning-network-gym}}
 }
-\\\
+```
 
 ## Original Research
 
