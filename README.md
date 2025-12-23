@@ -6,7 +6,7 @@
 
 ## Overview
 
-This repository provides a **Gym Environment** for Lightning Network channel and capacity selection research. This is a standalone environment package that allows researchers and developers to integrate their own reinforcement learning models for joint node selection and resource allocation in the Lightning Network.
+This repository provides a **Gym Environment** for Lightning Network channel and capacity selection research. This is a standalone environment package that allows researchers and developers to integrate their own reinforcement learning models for joint node selection and resource allocation in the Lightning Network. This environment is provided by the research paper team "Aligning Incentives and Resilience: Joint Node Selection and Resource Allocation in the Lightning Network".
 
 **Key Features:**
 - OpenAI Gym-compatible environment for Lightning Network channel opening
@@ -28,22 +28,17 @@ This package includes:
 This is a **model-agnostic environment**. It does NOT include:
 - Pre-trained models
 - Training scripts for specific algorithms
-- Model architectures (GNN, Transformer, etc.)
+- Model architectures
 - Evaluation and baseline scripts
 
 **You bring your own model!** This allows you to experiment with any RL algorithm or neural network architecture.
 
 ## Installation
 
-### Prerequisites
-
-- Python 3.8 or higher
-- Git
-
 ### Install Dependencies
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/lightning-network-gym.git
+git clone https://github.com/incentivus/lightning-network-gym.git
 cd lightning-network-gym
 pip install -r requirements.txt
 ```
@@ -144,11 +139,14 @@ The environment uses a `gym.spaces.MultiDiscrete` action space for:
 
 ### Reward Function
 
-The reward function considers:
+During the reward function process we consider:
 - Transaction success rates
 - Network centralization metrics
 - Resource utilization efficiency
 - Channel balance and liquidity
+
+Reward function is generated based on:
+- Total revenue achieved from transaction throughput
 
 ## Integrating Your Model
 
@@ -198,23 +196,9 @@ The environment expects:
 
 Sample data is provided in the `data/` directory.
 
-## Citation
-
-If you use this environment in your research, please cite:
-
-```bibtex
-@misc{lightning-network-gym,
-  title={Aligning Incentives and Resilience: Joint Node Selection and Resource Allocation in the Lightning Network - Gym Environment},
-  author={[Original Authors]},
-  year={2025},
-  publisher={GitHub},
-  howpublished={\url{https://github.com/YOUR_USERNAME/lightning-network-gym}}
-}
-```
-
 ## Original Research
 
-This environment is derived from the research project: [Lightning-Network-Centralization](https://github.com/AAhmadS/Lightning-Network-Centralization)
+This environment is derived from the research project: [Lightning-Network-Centralization](https://github.com/incentivus/Lightning-Network-Centralization)
 
 ## License
 
