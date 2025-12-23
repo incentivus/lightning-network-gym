@@ -10,7 +10,7 @@ python-louvain==0.16
 scikit-learn==1.4.0
 scipy==1.12.0
 seaborn==0.13.2
-tqdm==4.66.1
+tqdm==4.66.3
 
 # Optional: For using with PyTorch-based models
 # Uncomment if you're using PyTorch models
